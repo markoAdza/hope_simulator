@@ -1,0 +1,108 @@
+####################################################
+## Run Simulations
+
+## Load functions, soon to be packaged
+source('rDaNCES/R/rDaNCES_proxy.R')
+
+####################################################
+## 1. SET UP
+
+### A. Simulation info
+
+# Template of config file, example flocking_final.json
+config_tmp_name <- 'simulations\\config_templates\\composed_config' 
+gen_config_path <- 'simulations\\generated_configs\\' 
+
+# Name of the folder that contains the model exe (should be in working directory)
+model_exe_name <- 'pigeon_model.exe' 
+model_fname <- 'simulations\\models\\test_model\\' 
+
+# Output folder
+data_out_path  <- 'data\\simulated\\' 
+logs_path <- 'simulations\\sim_logs\\'
+## Name of sets
+## In this examnple we will run sets for varying group sizes and number of
+## interacting neighbours of the prey in alignment and attraction rules
+sets <- c('test_sims_050625_N10_topo4', ## N = 10, topological range = 4
+          'test_sims_050625_N10_topo7',
+          'test_sims_050625_N30_topo4',
+          'test_sims_050625_N30_topo7'
+         )
+
+# Number of repetitions of each parameter set:
+reps <- 2
+
+
+### B. Parameter values
+# Change some of the default parameter values from config template (NA to keep)
+
+## Bi. General
+N <- list(c(10), c(10), c(30), c(30)) # Flock size per set
+cruise_speed <- c(8, 14) # will vary at each set
+drag_w <- c(0.1, 0.5) # Weight to return to cruise speed
+
+## Bii. Coordination
+
+# Topological interactions
+topo <- list(c(4), c(7), c(4), c(7))
+fov <- c(210, 270, 330)
+
+# Relative weights
+coh_turn_w <- c(0.1) ## change from default but not deviate across runs
+sep_w <- c(1, 2)
+align_w <- c(2, 5)
+
+## Biii. Collective turning
+roost_w <- c(2, 5)
+
+## Can set all others to NA and add them at the construct param set below for
+## tidyness, eg:
+# aer_cs_sd <- NA
+# fl_tr <- NA
+# pred_shadow_bangl <- NA
+
+
+
+####################################################
+## 2. MAIN LOOP - Run sims
+
+result_folds <- c()
+
+for (i in 1:length(sets))
+{
+  param_set <- construct_ParamSets(
+    N = N[[i]], ## i if varying per set
+    output_folder = sets[i],
+    # #fl_tr = react_time[[1]], ## many more parameters can change, see ParamClass
+    fl_aer_cs = cruise_speed,
+    # fl_aer_w = drag_w,
+    # ali_topo = topo[[i]],
+    # coh_turn_topo = topo[[i]], 
+    # sep_w = sep_w,
+    # coh_turn_w = coh_turn_w,
+    # ali_w = align_w,
+    # roost_w = roost_w,
+    # fov = fov
+  )
+  
+  dirs <- set_up_directories(out_folder = sets[i],
+                             config_name = config_tmp_name,
+                             model_exe = model_exe_name,
+                             model_path = model_fname,
+                             config_exp_path = gen_config_path,
+                             results_path = data_out_path, 
+                             logs_path = logs_path)
+  
+  set_up_simulations(param_set, dirs)
+  
+  ## Runs simulations
+  run_simulations(dirs, reps)
+  result_folds <- c(result_folds, dirs$DATA_OUT_PATH)
+  
+  ## Move data to external drive if too heavy
+  #rt <- file.copy(dirs$DATA_OUT_PATH, 'D:/Projects/CollectiveTurns', recursive = TRUE) 
+  #if (rt) {  fs::dir_delete(dirs$DATA_OUT_PATH) }
+  print(paste0('Simulations set done: ', i))
+}
+
+

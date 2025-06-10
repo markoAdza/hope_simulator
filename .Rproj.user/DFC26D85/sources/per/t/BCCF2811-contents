@@ -1,0 +1,60 @@
+# setting up directories for simulations
+
+#' @export
+set_up_directories <- function(out_folder, 
+                               config_name, 
+                               model_exe = 'starling_model.exe',
+                               exp_conf_name_id = '',
+                               model_path = '..\\model_exe\\', 
+                               config_exp_path = '..\\model_input\\gen_configs\\', 
+                               logs_path = '..\\sim_logs\\', 
+                               results_path = '..\\data\\')
+{
+  
+  if (is.na(out_folder) | is.na(config_name)) {
+    stop("Error: please choose an output folder and .")
+    }
+  
+  data_path = 'sim_data\\' # hard coded in model ??
+  
+  directories <- list()
+  directories$outfold <- out_folder
+  ## Manual inputs
+  directories$CONFIG_PATH <- paste0(config_name, '.json')
+  MODEL_PATH <- paste0(model_path, model_exe)
+  directories$CONFIGS_NAME <- paste0('config_', exp_conf_name_id)
+  
+  for (i in c(directories$CONFIG_PATH, MODEL_PATH))
+  {
+    confasser <- assertthat::see_if(file.exists(i))
+    if (!(confasser[1]))
+    { stop(attr(confasser,which = "msg"))}
+  }
+  
+  directories$MODEL_RUN_DIR <- paste0("\"", MODEL_PATH, "\"")
+  
+  ## Indipendent of out folds
+  directories$EXP_CONFIGS_PATH <- config_exp_path
+  directories$RESULTS_PATH <- results_path
+  directories$LOGS_PATH <- logs_path
+  
+  ## Output folder specific
+  param_set_csv <- out_folder
+  directories$NEW_CONFIGS_PATH <- paste0(config_exp_path, param_set_csv)
+  directories$RESULTS_SPEC_PATH<- paste0(directories$RESULTS_PATH, out_folder)
+  directories$RESULTS_SPEC_TMP_PATH <- paste0(directories$RESULTS_SPEC_PATH, '/tmp/')
+  
+  dirs.v <- c(directories$EXP_CONFIGS_PATH, directories$NEW_CONFIGS_PATH, directories$RESULTS_PATH, directories$RESULTS_SPEC_PATH, directories$RESULTS_SPEC_TMP_PATH, directories$LOGS_PATH)
+  for (i in dirs.v) { if (!(dir.exists(i))) { dir.create(i) }}
+  
+  # NAMES AND OTHER CREATED PATHS
+  directories$DATA_OUT_PATH <- paste0( data_path, out_folder,'\\')
+  directories$LOG_FULL_PATH <- paste0(directories$LOGS_PATH, out_folder, '.log')
+  
+  return(directories)
+}
+
+
+
+
+

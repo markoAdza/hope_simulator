@@ -1,0 +1,26 @@
+{
+    "id": "55050394",
+    "path": "~/Code/dances_simulator/analysis/analysis.R",
+    "project_path": "analysis/analysis.R",
+    "type": "r_source",
+    "hash": "1144208567",
+    "contents": "",
+    "dirty": false,
+    "created": 1749139309737.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "28,52",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1749140060,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1749140060988,
+    "read_only": false,
+    "read_only_alternatives": []
+}

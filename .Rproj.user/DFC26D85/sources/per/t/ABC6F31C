@@ -1,0 +1,26 @@
+{
+    "id": "ABC6F31C",
+    "path": "~/Code/dances_simulator/rDaNCES/R/set_up_sims.R",
+    "project_path": "rDaNCES/R/set_up_sims.R",
+    "type": "r_source",
+    "hash": "3451244603",
+    "contents": "",
+    "dirty": false,
+    "created": 1749138412864.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "0,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1749138417,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1749138417324,
+    "read_only": false,
+    "read_only_alternatives": []
+}

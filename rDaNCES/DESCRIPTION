@@ -1,0 +1,29 @@
+Package: rDaNCES
+Title: Running Data-iNspired Collective Escape Simulations
+Version: 0.0.1
+Date: 2025-06-05
+Authors@R: 
+   person("Marina", "Papadopoulou", , "m.papadopoulou.rug@gmail.com", role = 
+    c("aut", "cre"), comment = c(ORCID = "0000-0002-6478-8365"))
+Maintainer: Marina Papadopoulou <m.papadopoulou.rug@gmail.com>
+Description: Provides a standardised and reproducable pipeline to run
+simulations over the parameter space of agent-based models based on the 
+DaNCES framework, described in:
+  Papadopoulou Marina, Hildenbrandt Hanno, and Hemerlijk K. Charlotte (2024)
+  <doi:10.1007/978-3-031-71533-4_15>.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: 
+  R (>= 3.5)
+Imports:
+  rjson,
+  data.table,
+  methods
+Suggests:
+  knitr,
+  rmarkdown,
+  testthat (>= 3.0.0)
+VignetteBuilder: knitr
