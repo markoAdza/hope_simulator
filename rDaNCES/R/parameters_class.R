@@ -35,7 +35,9 @@ ParamSets <-  methods::setClass(
     fov = "numeric",
     turn_chars = "numeric",
     copy_fov = "numeric",
-    copy_topo = "numeric"
+    copy_topo = "numeric",
+    prey_speed_scale = "numeric",
+    chase_w ="numeric"
   )
 )
 
@@ -72,10 +74,17 @@ construct_ParamSets <- function(
     fov = NA_integer_,
     turn_chars = NA_integer_,
     copy_fov = NA_integer_,
-    copy_topo = NA_integer_
+    copy_topo = NA_integer_,
+    prey_speed_scale = NA_integer_,
+    chase_w = NA_integer_
 )
 {
-  
+  # "prey_speed_scale": 2.1,
+  # "centroid_threshold": 5,
+  # "stoop_distance_threshold": 40.0,
+  # "stoop_speed_factor": 10.0,
+  # "steering_factor": 0.5,
+  # "num_neighbors": 5
   param_set  <- methods::new("ParamSets",
                              output_folder = output_folder,
                              N = N,
@@ -105,7 +114,9 @@ construct_ParamSets <- function(
                              fov = fov,
                              turn_chars = turn_chars,
                              copy_fov = copy_fov,
-                             copy_topo = copy_topo
+                             copy_topo = copy_topo,
+                             prey_speed_scale = prey_speed_scale,
+                             chase_w = chase_w
   )
   
   return(param_set)

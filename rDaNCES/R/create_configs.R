@@ -142,7 +142,39 @@ sim_config_change <- function(
   return(conf_sim)
 }
 
-
+pred_config_change <- function(
+    conf_pred,
+    new_params
+)
+{
+  
+  for (k in 1:states_size(conf_pred))
+  {
+    skchange <- get_state(conf_pred, k)
+    
+    # ACTIONS
+    for (m in 1:length(skchange$actions))
+    {
+      act <- skchange$actions[[m]]
+      
+      if (act$name == 'set_from_flock')
+      {
+      #   if (!(is.na( new_params[1, 'hunt_bear']))) {  skchange$actions[[m]]$bearing <- new_params[1, 'hunt_bear'] }
+      #   if (!(is.na( new_params[1, 'hunt_set_dist']))) {  skchange$actions[[m]]$distance <- new_params[1, 'hunt_set_dist'] }
+      }
+      
+      if (act$name == 'chase_closest_prey')
+      {
+        if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
+        if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
+      }
+    }
+    conf_pred$states[[k]] <- skchange
+    
+  }
+  
+  return(conf_pred)
+}
 
 
 #' @title Change a config file
@@ -163,17 +195,20 @@ config_change <- function(
 )
 {
   conf_prey <- agent_config(config_temp, 'Pigeon')
+  conf_pred <- agent_config(config_temp, 'Pred')
   
   for (i in 1:length(df_param[,1]))
   {
     ## Prey config
     config_temp$Prey <- prey_config_change(conf_prey, df_param[i,])
+    config_temp$Pred <- pred_config_change(conf_pred, df_param[i,])
     
     ## Simulation change
     config_temp$Simulation <- sim_config_change(config_temp$Simulation, df_param[i,])
     
     config_temp$Simulation$esc_states <- list(2)
     config_temp$Pred$transitions$edges <- list(0)
+    
     ## Pred change
     exportJson <- rjson::toJSON(config_temp)
     write(exportJson, paste0(exp_name, i, bunch_id,  ".json"))

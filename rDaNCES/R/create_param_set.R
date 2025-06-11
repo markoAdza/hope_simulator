@@ -37,7 +37,9 @@ create_param_set <- function(
                     'fov', 
                     'turn_chars',
                     'copy_fov', 
-                    'copy_topo');
+                    'copy_topo',
+                    'prey_speed_scale',
+                    'chase_w');
   
   prey_param <- expand.grid(ps@N, 
                             ps@Tmax,
@@ -67,7 +69,10 @@ create_param_set <- function(
                             ps@fov,
                             ps@turn_chars, 
                             ps@copy_fov, 
-                            ps@copy_topo);
+                            ps@copy_topo,
+                            ps@prey_speed_scale,
+                            ps@chase_w
+                            );
   
   colnames(prey_param) <- param_order;
   return(prey_param);
