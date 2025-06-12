@@ -39,7 +39,14 @@ create_param_set <- function(
                     'copy_fov', 
                     'copy_topo',
                     'prey_speed_scale',
-                    'chase_w');
+                    'chase_w',
+                    'centroid_threshold',
+                    'stoop_distance_threshold',
+                    'stoop_speed_factor',
+                    'steering_factor',
+                    'num_neighbors',
+                    'hunt_bearing',
+                    'hunt_set_dist');
   
   prey_param <- expand.grid(ps@N, 
                             ps@Tmax,
@@ -71,7 +78,14 @@ create_param_set <- function(
                             ps@copy_fov, 
                             ps@copy_topo,
                             ps@prey_speed_scale,
-                            ps@chase_w
+                            ps@chase_w,
+                            ps@centroid_threshold,
+                            ps@stoop_distance_threshold,
+                            ps@stoop_speed_factor,
+                            ps@steering_factor,
+                            ps@num_neighbors,
+                            ps@hunt_bearing,
+                            ps@hunt_set_dist
                             );
   
   colnames(prey_param) <- param_order;

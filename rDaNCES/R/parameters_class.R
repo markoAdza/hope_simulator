@@ -37,7 +37,14 @@ ParamSets <-  methods::setClass(
     copy_fov = "numeric",
     copy_topo = "numeric",
     prey_speed_scale = "numeric",
-    chase_w ="numeric"
+    chase_w ="numeric",
+    centroid_threshold = "numeric",
+    stoop_distance_threshold = "numeric",
+    stoop_speed_factor = "numeric",
+    steering_factor = "numeric",
+    num_neighbors = "numeric",
+    hunt_bearing = "numeric",
+    hunt_set_dist = "numeric"
   )
 )
 
@@ -76,15 +83,16 @@ construct_ParamSets <- function(
     copy_fov = NA_integer_,
     copy_topo = NA_integer_,
     prey_speed_scale = NA_integer_,
-    chase_w = NA_integer_
+    chase_w = NA_integer_,
+    centroid_threshold = NA_integer_,
+    stoop_distance_threshold = NA_integer_,
+    stoop_speed_factor = NA_integer_,
+    steering_factor = NA_integer_,
+    num_neighbors = NA_integer_,
+    hunt_bearing = NA_integer_,
+    hunt_set_dist = NA_integer_
 )
 {
-  # "prey_speed_scale": 2.1,
-  # "centroid_threshold": 5,
-  # "stoop_distance_threshold": 40.0,
-  # "stoop_speed_factor": 10.0,
-  # "steering_factor": 0.5,
-  # "num_neighbors": 5
   param_set  <- methods::new("ParamSets",
                              output_folder = output_folder,
                              N = N,
@@ -116,7 +124,14 @@ construct_ParamSets <- function(
                              copy_fov = copy_fov,
                              copy_topo = copy_topo,
                              prey_speed_scale = prey_speed_scale,
-                             chase_w = chase_w
+                             chase_w = chase_w,
+                             centroid_threshold = centroid_threshold,
+                             stoop_distance_threshold = stoop_distance_threshold,
+                             stoop_speed_factor = stoop_speed_factor,
+                             steering_factor = steering_factor,
+                             num_neighbors = num_neighbors,
+                             hunt_bearing = hunt_bearing,
+                             hunt_set_dist = hunt_set_dist
   )
   
   return(param_set)

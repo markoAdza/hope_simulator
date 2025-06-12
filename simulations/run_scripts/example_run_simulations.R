@@ -11,7 +11,8 @@ source('rDaNCES/R/rDaNCES_proxy.R')
 
 # Template of config file, example flocking_final.json
 config_tmp_name <- c('simulations\\config_templates\\config_temp_chase_centr',
-                     'simulations\\config_templates\\config_temp_chase_close'
+                     'simulations\\config_templates\\config_temp_chase_close',
+                     'simulations\\config_templates\\'
                      )
 
 gen_config_path <- 'simulations\\generated_configs\\' 
@@ -19,7 +20,11 @@ gen_config_path <- 'simulations\\generated_configs\\'
 # Name of the folder that contains the model exe (should be in working directory)
 model_exe_name <- 'pigeon_model.exe' 
 model_fname <- c('simulations\\models\\chase_centroid\\',
-                 'simulations\\models\\chase_closest\\')
+                 'simulations\\models\\chase_closest\\',
+                 'simulations\\models\\chase_most_isolated\\',
+                 'simulations\\models\\chase_most_peripheral\\',
+                 'simulations\\models\\chase_random\\',
+                 'simulations\\models\\chase_stooping\\')
 
 # Output folder
 data_out_path  <- 'data\\simulated\\' 
@@ -28,7 +33,11 @@ logs_path <- 'simulations\\sim_logs\\'
 ## In this examnple we will run sets for varying group sizes and number of
 ## interacting neighbours of the prey in alignment and attraction rules
 sets <- c('test_centroid', ## N = 10, topological range = 4
-          'test_closest'
+          'test_closest',
+          'test_most_isolated',
+          'test_most_peripheral',
+          'test_random',
+          'test_stooping'
          )
 
 # Number of repetitions of each parameter set:
@@ -42,6 +51,8 @@ reps <- 2
 N <- c(10, 30) # Flock size per set
 chase_w <- list(c(1), c(5,10)) # will vary at each set
 hunt_sp_sc <- c(1.2, 1.5)
+#tuki dodas variabilne vrednosti
+
 ## Bii. Coordination
 # 
 # # Topological interactions

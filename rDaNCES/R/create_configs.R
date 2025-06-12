@@ -159,8 +159,8 @@ pred_config_change <- function(
       
       if (act$name == 'set_from_flock')
       {
-      #   if (!(is.na( new_params[1, 'hunt_bear']))) {  skchange$actions[[m]]$bearing <- new_params[1, 'hunt_bear'] }
-      #   if (!(is.na( new_params[1, 'hunt_set_dist']))) {  skchange$actions[[m]]$distance <- new_params[1, 'hunt_set_dist'] }
+        if (!(is.na( new_params[1, 'hunt_bearing']))) {  skchange$actions[[m]]$bearing <- new_params[1, 'hunt_bearing'] }
+        if (!(is.na( new_params[1, 'hunt_set_dist']))) {  skchange$actions[[m]]$distance <- new_params[1, 'hunt_set_dist'] }
       }
       
       if (act$name == 'chase_closest_prey')
@@ -168,6 +168,43 @@ pred_config_change <- function(
         if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
         if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
       }
+      
+      if (act$name == 'lock_on_centroid_prey')
+      {
+        if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
+        if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
+        if (!(is.na( new_params[1, 'centroid_threshold']))) {  skchange$actions[[m]]$centroid_threshold <- new_params[1, 'centroid_threshold'] }
+      }
+      
+      if (act$name == 'hunt_most_isolated_prey')
+      {
+        if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
+        if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
+        if (!(is.na( new_params[1, 'num_neighbors']))) {  skchange$actions[[m]]$num_neighbors <- new_params[1, 'num_neighbors'] }
+      }
+      
+      if (act$name == 'hunt_most_peripheral_prey')
+      {
+        if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
+        if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
+      }
+      
+      if (act$name == 'hunt_random_prey')
+      {
+        if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
+        if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
+      }
+      
+      if (act$name == 'stooping_hunt')
+      {
+        if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
+        if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
+        if (!(is.na( new_params[1, 'stoop_distance_threshold']))) {  skchange$actions[[m]]$stoop_distance_threshold <- new_params[1, 'stoop_distance_threshold'] }
+        if (!(is.na( new_params[1, 'stoop_speed_factor']))) {  skchange$actions[[m]]$stoop_speed_factor <- new_params[1, 'stoop_speed_factor'] }
+        if (!(is.na( new_params[1, 'steering_factor']))) {  skchange$actions[[m]]$steering_factor <- new_params[1, 'steering_factor'] }
+        if (!(is.na( new_params[1, 'num_neighbors']))) {  skchange$actions[[m]]$num_neighbors <- new_params[1, 'num_neighbors'] }
+      }
+      
     }
     conf_pred$states[[k]] <- skchange
     
