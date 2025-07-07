@@ -175,26 +175,26 @@ pred_config_change <- function(
         if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
         if (!(is.na( new_params[1, 'centroid_threshold']))) {  skchange$actions[[m]]$centroid_threshold <- new_params[1, 'centroid_threshold'] }
       }
-      
+
       if (act$name == 'hunt_most_isolated_prey')
       {
         if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
         if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
         if (!(is.na( new_params[1, 'num_neighbors']))) {  skchange$actions[[m]]$num_neighbors <- new_params[1, 'num_neighbors'] }
       }
-      
+
       if (act$name == 'hunt_most_peripheral_prey')
       {
         if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
         if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
       }
-      
+
       if (act$name == 'hunt_random_prey')
       {
         if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }
         if (!(is.na( new_params[1, 'prey_speed_scale']))) {  skchange$actions[[m]]$prey_speed_scale <- new_params[1, 'prey_speed_scale'] }
       }
-      
+
       if (act$name == 'stooping_hunt')
       {
         if (!(is.na( new_params[1, 'chase_w']))) {  skchange$actions[[m]]$w <- new_params[1, 'chase_w'] }

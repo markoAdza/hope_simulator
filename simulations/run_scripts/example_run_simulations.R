@@ -10,20 +10,21 @@ source('rDaNCES/R/rDaNCES_proxy.R')
 ### A. Simulation info
 
 # Template of config file, example flocking_final.json
-config_tmp_name <- c('simulations\\config_templates\\config_temp_chase_centr',
-                     'simulations\\config_templates\\config_temp_chase_close',
-                     'simulations\\config_templates\\'
+config_tmp_name <- c('simulations\\config_templates\\config_temp_chase_close',
+                     'simulations\\config_templates\\config_temp_chase_centr',
+                     'simulations\\config_templates\\config_temp_chase_iso',
+                     'simulations\\config_templates\\config_temp_chase_peripheral',
+                     'simulations\\config_templates\\config_temp_chase_stoop'
                      )
 
 gen_config_path <- 'simulations\\generated_configs\\' 
 
 # Name of the folder that contains the model exe (should be in working directory)
 model_exe_name <- 'pigeon_model.exe' 
-model_fname <- c('simulations\\models\\chase_centroid\\',
-                 'simulations\\models\\chase_closest\\',
+model_fname <- c('simulations\\models\\chase_closest\\',
+                 'simulations\\models\\chase_centroid\\',
                  'simulations\\models\\chase_most_isolated\\',
                  'simulations\\models\\chase_most_peripheral\\',
-                 'simulations\\models\\chase_random\\',
                  'simulations\\models\\chase_stooping\\')
 
 # Output folder
@@ -32,26 +33,25 @@ logs_path <- 'simulations\\sim_logs\\'
 ## Name of sets
 ## In this examnple we will run sets for varying group sizes and number of
 ## interacting neighbours of the prey in alignment and attraction rules
-sets <- c('test_centroid', ## N = 10, topological range = 4
-          'test_closest',
+sets <- c('test_closest', ## N = 10, topological range = 5
+          'test_centroid',
           'test_most_isolated',
           'test_most_peripheral',
-          'test_random',
           'test_stooping'
          )
 
 # Number of repetitions of each parameter set:
-reps <- 2
+reps <- 1
 
 
 ### B. Parameter values
 # Change some of the default parameter values from config template (NA to keep)
 
 ## Bi. General
-N <- c(10, 30) # Flock size per set
-chase_w <- list(c(1), c(5,10)) # will vary at each set
-hunt_sp_sc <- c(1.2, 1.5)
-#tuki dodas variabilne vrednosti
+# N <- c(10, 30) # Flock size per set
+#chase_w <- list(c(1), c(5,10)) # will vary at each set
+#hunt_sp_sc <- c(1.2, 1.5)
+#TUKI dodas variabilne vrednosti
 
 ## Bii. Coordination
 # 
@@ -82,11 +82,11 @@ result_folds <- c()
 
 for (i in 1:length(sets))
 {
-  param_set <- construct_ParamSets(
-    N = N, ## i if varying per set
+  param_set <- construct_ParamSets( # TUKI uporabs variabilne vrednosti
+    #N = N, ## i if varying per set
     output_folder = sets[i],
-    chase_w = chase_w[[i]],
-    prey_speed_scale = hunt_sp_sc[i]
+    #chase_w = chase_w[[i]],
+    #prey_speed_scale = hunt_sp_sc[i]
   )
   
   dirs <- set_up_directories(out_folder = sets[i],
