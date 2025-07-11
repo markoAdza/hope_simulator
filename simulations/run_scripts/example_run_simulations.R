@@ -14,7 +14,8 @@ config_tmp_name <- c('simulations\\config_templates\\config_temp_chase_close',
                      'simulations\\config_templates\\config_temp_chase_centr',
                      'simulations\\config_templates\\config_temp_chase_iso',
                      'simulations\\config_templates\\config_temp_chase_peripheral',
-                     'simulations\\config_templates\\config_temp_chase_stoop'
+                     'simulations\\config_templates\\config_temp_chase_stoop',
+                     'simulations\\config_templates\\config_temp_chase_random'
                      )
 
 gen_config_path <- 'simulations\\generated_configs\\' 
@@ -25,7 +26,8 @@ model_fname <- c('simulations\\models\\chase_closest\\',
                  'simulations\\models\\chase_centroid\\',
                  'simulations\\models\\chase_most_isolated\\',
                  'simulations\\models\\chase_most_peripheral\\',
-                 'simulations\\models\\chase_stooping\\')
+                 'simulations\\models\\chase_stooping\\',
+                 'simulations\\models\\chase_random\\')
 
 # Output folder
 data_out_path  <- 'data\\simulated\\' 
@@ -37,7 +39,8 @@ sets <- c('test_closest', ## N = 10, topological range = 5
           'test_centroid',
           'test_most_isolated',
           'test_most_peripheral',
-          'test_stooping'
+          'test_stooping',
+          'test_random'
          )
 
 # Number of repetitions of each parameter set:
@@ -48,7 +51,7 @@ reps <- 1
 # Change some of the default parameter values from config template (NA to keep)
 
 ## Bi. General
-# N <- c(10, 30) # Flock size per set
+#N <- c(10, 30, 100) # Flock size per set
 #chase_w <- list(c(1), c(5,10)) # will vary at each set
 #hunt_sp_sc <- c(1.2, 1.5)
 #TUKI dodas variabilne vrednosti
